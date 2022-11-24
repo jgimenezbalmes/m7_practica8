@@ -1,8 +1,8 @@
 import psycopg2
-# Funcion Eliminar tabla
+# Funcion Eliminar Tabla por el id
 def eliminar():
     try:
-        # Conectarse a la base de datos db_crud
+        # Hacer la conexion a la base de datos
         conexion = psycopg2.connect(
             host="localhost",
             user="postgres",
@@ -13,47 +13,46 @@ def eliminar():
         cursor = conexion.cursor()
         # Seleccionar la tabla personas
         tabla_personas = "select * from personas"
-        # Ejecutamos el sql
+        # Ejecutar el sql
         cursor.execute(tabla_personas)
-        # Recuperamos todos los campos de la tabla personas
+        # Obtener la tabla existente
         personas_existentes = cursor.fetchall()
 
         print("Tabla Personas: ")
-        # Recorrer la tabla personas e imprimir por pantalla
+        # Recorrer la tabla e imprimir los datos que tenga la tabla
         for row in personas_existentes:
             print(row)
-
-        # SQL Eliminamos la tabla con el id
+        # Eliminar la tabla personas por el id
         sql = 'DELETE FROM personas WHERE professor_id=%s'
-        # Escribir por pantalla los nuevos valores en el campo
+        # Preguntar la tabla a eliminar
         id_professor = input('Ingrese el id del registro a eliminar: ')
-        # Ejecutamos el sql y el id a eliminar
+        # Executar el sql y el id a eliminar
         cursor.execute(sql, id_professor)
-        # Guardamos los cambios
+        # Guardar los cambios
         conexion.commit()
-        # Hacemos un conteo de los registros que hay en la tabla
+        # Hacer un conteo del registro que tiene la tabla
         registro_eliminado = cursor.rowcount
 
         print(f'registros eliminados: {registro_eliminado}')
-        # Seleccionamos la tabla personas
+        # Seleccionar la tabla personas
         tabla_personas = "select * from personas"
-        # Ejecutamos el SQL
+        # Ejecutar el sql
         cursor.execute(tabla_personas)
-        # Obtenemos la tabla persona con todos los campos creados en ese momento
+        # Obtener la tabla
         personas_existentes = cursor.fetchall()
 
         print("\nTabla Personas existentes: ")
-        # Recorremos la tabla persona e imprimimos los campos
+        # Recorrer la tabla existente e imprimir los datos que hay en ese momento
         for row in personas_existentes:
             print(row)
-        # Cerramos la conexion
+        # Cerrar la conexion
         cursor.close()
         conexion.close()
     # En caso de que no se conecte a la base de datos
     except(Exception, psycopg2.Error) as error:
         print("Error al conectarse con PostgresSQL: " + error)
     finally:
-        # Si se conecta cerramos la conexion
+        # En caso de que se conecte se cierra la conexion
         if conexion:
             cursor.close()
             conexion.close()
