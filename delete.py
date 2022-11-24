@@ -32,7 +32,7 @@ def eliminar():
 
         print("\nTabla Personas existentes: ")
         for row in personas_existentes:
-            print(row)git 
+            print(row)
 
         cursor.close()
         conexion.close()

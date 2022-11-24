@@ -1,6 +1,4 @@
 import psycopg2
-from config import config
-
 # Connect to your postgres DB
 connexio = psycopg2.connect(
     host="localhost",
@@ -14,19 +12,14 @@ connexio = psycopg2.connect(
 cursor = connexio.cursor()
 
 def crea_taula():
-    """ create tables in the PostgreSQL database"""
-    sql = ("""CREATE TABLE personas (professor_id SERIAL PRIMARY KEY,
-                    nom_professor VARCHAR(255) NOT NULL,
-                    cognom_professor VARCHAR(255) NOT NULL,
-                    edat INTEGER NOT NULL
-        """)
-    connexio = None
+
     try:
-        # read the connection parameters
-        params = config()
-        # connect to the PostgreSQL server
-        connexio = psycopg2.connect(**params)
-        cursor = connexio.cursor()
+        """ create tables in the PostgreSQL database"""
+        sql = ("""CREATE TABLE personas (professor_id SERIAL PRIMARY KEY,
+                        nom_professor VARCHAR(255) NOT NULL,
+                        cognom_professor VARCHAR(255) NOT NULL,
+                        edat INTEGER NOT NULL) 
+            """)
         # create table one by one
         cursor.execute(sql)
         #for comanda in sql:
