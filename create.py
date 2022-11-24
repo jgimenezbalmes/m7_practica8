@@ -18,7 +18,7 @@ def crea_taula():
     sql = ("""CREATE TABLE personas (professor_id SERIAL PRIMARY KEY,
                     nom_professor VARCHAR(255) NOT NULL,
                     cognom_professor VARCHAR(255) NOT NULL,
-                    teDoctorat BOOLEAN NOT NULL
+                    edat INTEGER NOT NULL
         """)
     connexio = None
     try:
