@@ -31,6 +31,8 @@ def crea_taula():
         cursor.close()
         # Fem commit dels canvis que s'han produit (és a dir, s'ha generat la taula)
         connexio.commit()
+        #Fiquem un missatge de que s'ha creat la taula de forma adient
+        print("Creada taula 'personas' de forma satisfactoria")
     #En cas que es doni error, guardem el text d'error que ens dona a la variable "error", i fem print
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
@@ -39,4 +41,3 @@ def crea_taula():
         if connexio is not None:
             connexio.close()
 
-crea_taula()
