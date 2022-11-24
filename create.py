@@ -1,0 +1,44 @@
+import psycopg2
+from config import config
+
+# Connect to your postgres DB
+connexio = psycopg2.connect(
+    host="localhost",
+    user="postgres",
+    password="postgres",
+    database="db_crud",
+    port="5432"
+)
+
+# Open a cursor to perform database operations
+cursor = connexio.cursor()
+
+def crea_taula():
+    """ create tables in the PostgreSQL database"""
+    sql = ("""CREATE TABLE personas (professor_id SERIAL PRIMARY KEY,
+                    nom_professor VARCHAR(255) NOT NULL,
+                    cognom_professor VARCHAR(255) NOT NULL,
+                    teDoctorat BOOLEAN NOT NULL
+        """)
+    connexio = None
+    try:
+        # read the connection parameters
+        params = config()
+        # connect to the PostgreSQL server
+        connexio = psycopg2.connect(**params)
+        cursor = connexio.cursor()
+        # create table one by one
+        cursor.execute(sql)
+        #for comanda in sql:
+            #cursor.execute(comanda)
+        # close communication with the PostgreSQL database server
+        cursor.close()
+        # commit the changes
+        connexio.commit()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if connexio is not None:
+            connexio.close()
+
+crea_taula()
