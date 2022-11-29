@@ -1,5 +1,4 @@
 import psycopg2
-
 # Funcion Actualizar Tabla
 def actualizar():
     try:
@@ -18,11 +17,11 @@ def actualizar():
         cursor.execute(tabla_personas)
         # Recuperamos todos los campos de la tabla personas
         personas_existentes = cursor.fetchall()
-
-        print("Tabla Personas: ")
+        print("Mostrar la Tabla Personas: ")
         # Recorrer la tabla personas e imprimir por pantalla
         for row in personas_existentes:
-            print(row)
+            print('\tprofessor_id' + '\tnom_professor' + '\tcognom_professor' + '\tedat')
+            print("\t\t" + str(row[0]) + "\t\t\t" + str(row[1]) + "\t\t\t" + str(row[2]) + "\t\t\t" + str(row[3]))
         # SQL Actualizar la tabla con todos los campos
         query = "UPDATE personas set nom_professor=%s,cognom_professor=%s,edat=%s WHERE professor_id=%s"
         # Escribir por pantalla los nuevos valores en el campo
@@ -46,10 +45,11 @@ def actualizar():
         # Recuperamos todos los campos de la tabla personas
         personas_existentes = cursor.fetchall()
 
-        print("\nTabla Personas existentes: ")
+        print("\nTabla Persona actualizada: ")
         # Recorremos la tabla y mostramos los campos que hay en ese momento
         for row in personas_existentes:
-            print(row)
+            print('\tprofessor_id' + '\tnom_professor' + '\tcognom_professor' + '\tedat')
+            print("\t\t" + str(row[0]) + "\t\t\t" + str(row[1]) + "\t\t\t" + str(row[2]) + "\t\t\t" + str(row[3]))
 
         cursor.close()
         conexion.close()
@@ -62,8 +62,6 @@ def actualizar():
             cursor.close()
             conexion.close()
             print("PostgreSQL conexion cerrada")
-actualizar()
-
 def insert_values():
     try:
         # Conectarse a la base de datos db_crud
@@ -83,10 +81,11 @@ def insert_values():
         # Recuperamos todos los campos de la tabla personas
         personas_existentes = cursor.fetchall()
 
-        print("\nTabla Personas a insertar: ")
+        print("\nTabla Personas insertar: ")
         # Recorrer la tabla personas e imprimir por pantalla
         for row in personas_existentes:
-            print(row)
+            print('\tprofessor_id' + '\tnom_professor' + '\tcognom_professor' + '\tedat')
+            print("\t\t" + str(row[0]) + "\t\t\t" + str(row[1]) + "\t\t\t" + str(row[2]) + "\t\t\t" + str(row[3]))
         # Insertar Nuevos valores a la tabla
         sql = "INSERT INTO personas(nom_professor,cognom_professor,edat) VALUES(%s,%s,%s)"
         # Escribir por pantalla los nuevos valores en el campo
@@ -106,7 +105,8 @@ def insert_values():
 
         print("\nTabla Personas existentes: ")
         for row in personas_existentes:
-            print(row)
+            print('\tprofessor_id' + '\tnom_professor' + '\tcognom_professor' + '\tedat')
+            print("\t\t" + str(row[0]) + "\t\t\t" + str(row[1]) + "\t\t\t" + str(row[2]) + "\t\t\t" + str(row[3]))
         cursor.close()
         conexion.close()
     except(Exception, psycopg2.Error) as error:
@@ -116,4 +116,3 @@ def insert_values():
             cursor.close()
             conexion.close()
             print("PostgreSQL conexion cerrada")
-insert_values()
