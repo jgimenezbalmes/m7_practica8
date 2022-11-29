@@ -21,7 +21,8 @@ def read():
 
         print("Tabla Personas: ")
         for row in personas_existentes:
-            print(row)
+            print('\tprofessor_id' + '\tnom_professor' + '\tcognom_professor' + '\tedat')
+            print("\t\t" + str(row[0]) + "\t\t\t" + str(row[1]) + "\t\t\t" + str(row[2]) + "\t\t\t" + str(row[3]))
         # Cerramos el Curso en suo
         cursor.close()
         # Hacemos un cambio de los cambios realizados (en este caso, la selección de la Tabala "personas")
