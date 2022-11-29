@@ -4,7 +4,7 @@ import delete
 import read
 import update
 
-valor = input("Quina funcio vols provar? \n1) Crear taula \n2) Llegir taula \n3)Modificar dades \n4)Inserir dades \n5)Borrar dades")
+valor = int(input("Quina funcio vols provar? \n1) Crear taula \n2) Llegir taula \n3)Modificar dades \n4)Inserir dades \n5)Borrar dades\n"))
 
 if (valor == 1):
     #Cridem a la funcio que crea la taula...
@@ -23,7 +23,7 @@ elif (valor==4):
     #Cridem a la funcio que inserta valors...
     update.insert_values()
 
-elif (input==5):
+elif (valor==5):
     #I la que elimina valors
     delete.eliminar()
 
